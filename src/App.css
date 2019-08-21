@@ -31,3 +31,25 @@
     transform: rotate(360deg);
   }
 }
+
+
+.tabs {
+}
+.tabs-header {
+  display: flex;
+}
+.tab {
+  display: block;
+  cursor: pointer;
+  padding: 16px 24px;
+}
+.tab.active {
+  border-bottom: 2px solid orangered;
+}
+.tab-panel {
+  padding: 10px;
+  display: none;
+}
+.tab-panel.active {
+  display: block;
+}
