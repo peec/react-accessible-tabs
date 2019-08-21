@@ -6,9 +6,17 @@ Accessible tab component for react.
 - Aria attributes
 
 
+## Install
+
+```bash
+npm install --save react-wai-accessible-tabs
+```
+
 ## Example usage
 
 ```jsx harmony
+import { Tabs, TabPanel, Tab } from 'react-wai-accessible-tabs';
+
 <Tabs initialActiveTab="tab2">
     <Tabs.Header label="Sports">
         <Tab id="tab1">Football</Tab>
@@ -30,6 +38,8 @@ Accessible tab component for react.
 
 
 ## Styling
+
+Example styles
 
 ```css
 
