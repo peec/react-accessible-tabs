@@ -33,23 +33,21 @@
 }
 
 
-.tabs {
-}
-.tabs-header {
+.my-tabs .tabs-header {
   display: flex;
 }
-.tab {
+.my-tabs .tab {
   display: block;
   cursor: pointer;
   padding: 16px 24px;
 }
-.tab.active {
+.my-tabs .tab.active {
   border-bottom: 2px solid orangered;
 }
-.tab-panel {
+.my-tabs .tab-panel {
   padding: 10px;
   display: none;
 }
-.tab-panel.active {
+.my-tabs .tab-panel.active {
   display: block;
 }

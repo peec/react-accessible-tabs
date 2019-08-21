@@ -7,7 +7,7 @@ const TabNavigationContext = React.createContext()
 const KEY_LEFT_ARROW = 37
 const KEY_RIGHT_ARROW = 39
 
-export const Tab = React.forwardRef(({ id, children }, ref) => {
+export const Tab = React.forwardRef(({ id, children, className, ...rest }, ref) => {
   const tabContext = useContext(TabContext)
   const tabNavigationContext = useContext(TabNavigationContext)
   const handleChangeTab = e => {
@@ -15,7 +15,8 @@ export const Tab = React.forwardRef(({ id, children }, ref) => {
     tabContext.changeTab(id)
   }
   const isActive = tabContext.activeTab === id
-  const classNames = `tab ${isActive ? 'active' : ''}`
+  const classNamePrefix = className || 'tab'
+  const classNames = `${classNamePrefix} ${isActive ? 'active' : ''}`
   const tabId = `label-for-${id}`
   const tabIndex = !isActive ? '-1' : null
 
@@ -33,7 +34,14 @@ export const Tab = React.forwardRef(({ id, children }, ref) => {
   }
 
   return (
-    <button onKeyDown={onKeyDown} ref={ref} role="tab" id={tabId} aria-selected={isActive ? 'true' : 'false'} aria-controls={id} tabIndex={tabIndex} className={classNames} onClick={handleChangeTab}>
+    <button
+      onKeyDown={onKeyDown}
+      ref={ref}
+      role="tab"
+      id={tabId}
+      aria-selected={isActive ? 'true' : 'false'}
+      aria-controls={id}
+      tabIndex={tabIndex} className={classNames} onClick={handleChangeTab} {...rest}>
       {children}
     </button>
   )
@@ -42,33 +50,33 @@ export const Tab = React.forwardRef(({ id, children }, ref) => {
 Tab.propTypes = {
   id: PropTypes.string.isRequired,
 }
-Tab.defaultProps = {
-  removable: false
-}
 
 
-export const TabPanel = ({ id, children }) => {
+export const TabPanel = ({ id, children, className, ...rest }) => {
   const tabContext = useContext(TabContext)
   const isActive = tabContext.activeTab === id
-  const classNames = `tab-panel ${isActive ? 'active' : ''}`
+  const classNamePrefix = className || 'tab-panel';
+  const classNames = `${classNamePrefix} ${isActive ? 'active' : ''}`
   return (
-    <div role="tabpanel" tabIndex="0" id={id} aria-hidden={!isActive} aria-labelledby={`label-for-${id}`} className={classNames}>
+    <div role="tabpanel" tabIndex="0" id={id} aria-hidden={!isActive} aria-labelledby={`label-for-${id}`} className={classNames} {...rest}>
       {children}
     </div>
   )
 }
-export const Tabs = ({ children, initialActiveTab }) => {
+export const Tabs = ({ children, initialActiveTab, className, ...rest }) => {
   const [ activeTab, changeTab ] = useState(initialActiveTab)
+  const classNamePrefix = className || 'tabs';
   return (
     <TabContext.Provider value={{activeTab, changeTab}}>
-      <div className="tabs">
+      <div className={classNamePrefix} {...rest}>
         {children}
       </div>
     </TabContext.Provider>
   )
 }
-const TabsHeader = ({ children, label }) => {
+const TabsHeader = ({ children, label, className, ...rest }) => {
   const tabRefs = children.map(child => React.createRef())
+  const classNamePrefix = className || 'tabs-header';
   const nextFocus = (ref) => {
     const currentTabIndex = tabRefs.findIndex(ref => ref.current === document.activeElement)
     let newTabIndex = currentTabIndex + 1
@@ -93,7 +101,7 @@ const TabsHeader = ({ children, label }) => {
   });
   return (
     <TabNavigationContext.Provider value={{nextFocus, prevFocus}}>
-      <div className="tabs-header" role="tablist" aria-label={label}>
+      <div className={classNamePrefix} role="tablist" aria-label={label} {...rest}>
         {tabChildren}
       </div>
     </TabNavigationContext.Provider>

@@ -17,7 +17,7 @@ npm install --save react-wai-accessible-tabs
 ```jsx harmony
 import { Tabs, TabPanel, Tab } from 'react-wai-accessible-tabs';
 
-<Tabs initialActiveTab="tab2">
+<Tabs className="my-tabs" initialActiveTab="tab2">
     <Tabs.Header label="Sports">
         <Tab id="tab1">Football</Tab>
         <Tab id="tab2">Basketball</Tab>
@@ -42,25 +42,22 @@ import { Tabs, TabPanel, Tab } from 'react-wai-accessible-tabs';
 Example styles
 
 ```css
-
-.tabs {
-}
-.tabs-header {
+.my-tabs .tabs-header {
   display: flex;
 }
-.tab {
+.my-tabs .tab {
   display: block;
   cursor: pointer;
   padding: 16px 24px;
 }
-.tab.active {
+.my-tabs .tab.active {
   border-bottom: 2px solid orangered;
 }
-.tab-panel {
+.my-tabs .tab-panel {
   padding: 10px;
   display: none;
 }
-.tab-panel.active {
+.my-tabs .tab-panel.active {
   display: block;
 }
 

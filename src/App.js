@@ -31,7 +31,7 @@ function App() {
   }
   return (
     <div>
-      <Tabs initialActiveTab="tab2">
+      <Tabs className="my-tabs" initialActiveTab="tab2">
         <Tabs.Header label="Sports">
           <Tab id="tab1">Football</Tab>
           <Tab id="tab2">Basketball</Tab>
@@ -49,7 +49,7 @@ function App() {
       </Tabs>
 
       <h2>Dynamic tabs</h2>
-      <Tabs initialActiveTab="tab3">
+      <Tabs className="my-tabs" initialActiveTab="tab3">
         <Tabs.Header label="Programming languages">
           {tabs.map(tab => <Tab key={tab.id} id={tab.id}>{tab.label}</Tab>)}
         </Tabs.Header>
